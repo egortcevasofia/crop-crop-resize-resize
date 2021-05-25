@@ -1,7 +1,8 @@
 package mts.teta.resizer;
 
-import mts.teta.resizer.imageprocessor.BadAttributesException;
+
 import org.junit.jupiter.api.Test;
+import mts.teta.imagehandlers.*;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
@@ -10,7 +11,6 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Paths;
 
-import static mts.teta.resizer.utils.MD5.getMD5;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ResizerAppTest {
@@ -48,7 +48,7 @@ class ResizerAppTest {
         app.setOutputFile(new File(absolutePathOutput));
         app.setResizeWidth(reducedPreviewWidth);
         app.setResizeHeight(reducedPreviewHeight);
-        app.setQuality(100);
+        //app.setQuality(100);
         app.call();
 
         BufferedImage reducedPreview = ImageIO.read(new File(absolutePathOutput));
@@ -75,7 +75,7 @@ class ResizerAppTest {
         app.setOutputFile(new File(absolutePathOutput));
         app.setResizeWidth(reducedPreviewWidth);
         app.setResizeHeight(reducedPreviewHeight);
-        app.setQuality(100);
+        //app.setQuality(100);
         app.call();
 
         BufferedImage reducedPreview = ImageIO.read(new File(absolutePathOutput));
@@ -190,7 +190,8 @@ class ResizerAppTest {
         assertEquals(IIOException.class, generatedException.getClass());
     }
 
-    @Test
+/* Валидация входных параметров выполнена перед вызовами. Для нее написаны отдельные тесты в ValidatorsTest
+   @Test
     public void testBadAttributes() throws Exception {
         URL res = getClass().getClassLoader().getResource(AUDIO_COVER_SOURCE_NAME);
         File file = Paths.get(res.toURI()).toFile();
@@ -201,7 +202,7 @@ class ResizerAppTest {
         ResizerApp app = new ResizerApp();
         app.setInputFile(new File(absolutePathInput));
         app.setOutputFile(new File(absolutePathOutput));
-        app.setQuality(-50);
+        //app.setQuality(-50);
         BadAttributesException generatedException = null;
         try {
             app.call();
@@ -211,5 +212,5 @@ class ResizerAppTest {
 
         assertEquals("Please check params!", generatedException.getMessage());
         assertEquals(BadAttributesException.class, generatedException.getClass());
-    }
+    }*/
 }
